@@ -8,7 +8,7 @@ type AxisDetail = {
   code: string;
   name: string;
   score: number;
-  answers: Record<string, any>;
+  answers: Record<string, unknown>;
   feedback: string;
 };
 

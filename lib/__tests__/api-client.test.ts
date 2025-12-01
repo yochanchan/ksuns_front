@@ -9,11 +9,12 @@ describe("apiFetch", () => {
 
   it("returns data when response is ok and JSON is valid", async () => {
     const mockJson = { message: "ok" };
-    global.fetch = jest.fn().mockResolvedValue({
+    const response: Partial<Response> = {
       ok: true,
       status: 200,
       json: () => Promise.resolve(mockJson),
-    } as any);
+    };
+    global.fetch = jest.fn().mockResolvedValue(response as Response);
 
     const result = await apiFetch<{ message: string }>("/test");
 
@@ -26,10 +27,11 @@ describe("apiFetch", () => {
   });
 
   it("returns null data when response is not ok", async () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    const response: Partial<Response> = {
       ok: false,
       status: 401,
-    } as any);
+    };
+    global.fetch = jest.fn().mockResolvedValue(response as Response);
 
     const result = await apiFetch("/unauthorized");
 
@@ -38,11 +40,12 @@ describe("apiFetch", () => {
   });
 
   it("handles JSON parse errors gracefully", async () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    const response: Partial<Response> = {
       ok: true,
       status: 200,
       json: () => Promise.reject(new Error("bad json")),
-    } as any);
+    };
+    global.fetch = jest.fn().mockResolvedValue(response as Response);
 
     const result = await apiFetch("/bad-json");
 

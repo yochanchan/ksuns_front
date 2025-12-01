@@ -9,7 +9,7 @@ export async function apiFetch<T>(
   path: string,
   options: {
     method?: HttpMethod;
-    body?: any;
+    body?: unknown;
     token?: string | null;
   } = {},
 ): Promise<{ data: T | null; status: number }> {

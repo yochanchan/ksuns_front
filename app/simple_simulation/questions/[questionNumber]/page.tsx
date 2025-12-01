@@ -11,6 +11,7 @@ import {
   OPTION_ICONS,
   SUB_GENRE_OPTIONS_BY_MAIN,
   getQuestionByNumber,
+  type MainGenreValue,
   type QuestionOption,
 } from "../../data/questions";
 import { useAnswerContext } from "../../state/answer-context";
@@ -39,13 +40,13 @@ export default function QuestionPage() {
   const selectedValues = answers[question.id] ?? [];
   const isSliderQuestion = Boolean(question.slider);
 
-  const mainGenreValue = answers.main_genre?.[0];
-  const questionOptions =
+  const mainGenreValue = answers.main_genre?.[0] as MainGenreValue | undefined;
+  const questionOptions: QuestionOption[] =
     question.id === "sub_genre" && mainGenreValue
       ? SUB_GENRE_OPTIONS_BY_MAIN[mainGenreValue] ?? []
       : question.options;
 
-  const unknownValue = questionOptions.find((option) => option.isUnknown)?.value;
+  const unknownValue = questionOptions.find((option: QuestionOption) => option.isUnknown)?.value;
 
   const completedCount = QUESTIONS.filter(
     (item) => item.number < question.number && (answers[item.id]?.length ?? 0) > 0,
@@ -218,7 +219,7 @@ export default function QuestionPage() {
         );
       })() : (
         <div id="simple-question-choice-grid" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {questionOptions.map((option) => (
+          {questionOptions.map((option: QuestionOption) => (
             <ChoiceCard
               key={option.value}
               label={option.label}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -141,7 +141,7 @@ export default function DashboardPage() {
   const [hoverAxis, setHoverAxis] = useState<string | null>(null);
   const [qaHistory, setQaHistory] = useState<QAHistoryItem[]>([]);
 
-  const loadQaHistory = async () => {
+  const loadQaHistory = useCallback(async () => {
     const { data, status } = await apiFetch<QAListResponse>("/qa/messages?limit=4");
     if (status === 401) {
       clearAccessToken();
@@ -151,7 +151,7 @@ export default function DashboardPage() {
     if (data?.items) {
       setQaHistory(data.items);
     }
-  };
+  }, [router]);
 
   useEffect(() => {
     const tokenFromUrl = searchParams.get("access_token");
@@ -172,15 +172,15 @@ export default function DashboardPage() {
         setData(fillAxisSummaries(data));
         loadQaHistory();
       } else {
-        setError("取得に失敗しました。時間をおいて再試行してください。");
+        setError("??????????????????????????");
       }
       setLoading(false);
     };
     load().catch(() => {
-      setError("取得に失敗しました。時間をおいて再試行してください。");
+      setError("??????????????????????????");
       setLoading(false);
     });
-  }, [router, searchParams]);
+  }, [router, searchParams, loadQaHistory]);
 
   const radarData: RadarPoint[] = useMemo(() => {
     if (!data) return [];
@@ -219,7 +219,7 @@ export default function DashboardPage() {
     setQaSending(false);
   };
 
-  const renderAngleTick = ({ payload, x, y }: { payload: any; x: number; y: number }) => {
+  const renderAngleTick = ({ payload, x, y }: { payload: { value: string }; x: number; y: number }) => {
     const point = radarData.find((entry) => entry.label === payload.value);
     const Icon = point ? AXIS_ICONS[point.code] : null;
     const isHighlight = point?.isHighlight ?? false;
