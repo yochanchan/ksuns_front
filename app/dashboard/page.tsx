@@ -176,10 +176,10 @@ const renderAngleTick = (props: {
   cy?: number;
   midAngle?: number;
   radius?: number;
-}): ReactElement => {
+}): ReactElement<SVGElement> => {
   const { payload, x, y } = props;
   const point = radarData.find((entry) => entry.label === payload.value);
-  if (!point) return <g />;
+  if (!point) return <g /> as ReactElement<SVGElement>;
     const Icon = AXIS_ICONS[point.code];
     const isHover = point.code === hoverAxis;
     const color = isHover ? HIGHLIGHT_COLOR : "#475569";
@@ -239,7 +239,7 @@ const renderAngleTick = (props: {
           {payload.value}
         </text>
       </g>
-    );
+    ) as ReactElement<SVGElement>;
   };
 
   if (loading || !data) {
