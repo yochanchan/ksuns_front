@@ -440,6 +440,7 @@ export const PRICE_RANGE_BOUNDS: Record<
   price_6000_8000: { min: 6000, max: 8000 },
   price_8000_10000: { min: 8000, max: 10000 },
   price_10000_12000: { min: 10000, max: 12000 },
+  price_12000_50000: { min: 12000, max: 50000 },
 };
 
 export const QUESTIONS: Question[] = [
@@ -506,6 +507,7 @@ export const QUESTIONS: Question[] = [
       { value: "price_6000_8000", label: "6,000 〜 8,000 円" },
       { value: "price_8000_10000", label: "8,000 〜 10,000 円" },
       { value: "price_10000_12000", label: "10,000 〜 12,000 円" },
+      { value: "price_12000_50000", label: "12,000 〜 50,000 円" },
     ],
   },
   {
@@ -518,7 +520,7 @@ export const QUESTIONS: Question[] = [
     options: [],
     slider: {
       min: 500,
-      max: 12000,
+      max: 50000,
       step: 100,
       unit: "円",
       defaultValue: 3000,
