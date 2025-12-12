@@ -15,6 +15,9 @@ import { RevenueForecastPage } from "@/app/revenue_forecast/page";
 import { FundingPlanPage } from "@/app/funding_plan/page";
 import { OperationPage } from "@/app/operation/page";
 import { LocationPage } from "@/app/location/page";
+import { InteriorExteriorPage } from "@/app/interior_exterior/page";
+import { MarketingPage } from "@/app/marketing/page";
+import { MenuPage } from "@/app/menu/page";
 
 type AxisOption = {
   code: string;
@@ -194,6 +197,9 @@ function DeepQuestionsContent() {
             {/* axis=compliance の場合は FundingPlanPage のコンテンツを表示 */}
             {/* axis=operation の場合は OperationPage のコンテンツを表示 */}
             {/* axis=location の場合は LocationPage のコンテンツを表示 */}
+            {/* axis=equipment の場合は InteriorExteriorPage のコンテンツを表示 */}
+            {/* axis=marketing の場合は MarketingPage のコンテンツを表示 */}
+            {/* axis=menu の場合は MenuPage のコンテンツを表示 */}
             {selectedAxis === "concept" ? (
               <ConceptPage hideHeader={true} />
             ) : selectedAxis === "funds" ? (
@@ -204,6 +210,12 @@ function DeepQuestionsContent() {
               <OperationPage hideHeader={true} />
             ) : selectedAxis === "location" ? (
               <LocationPage hideHeader={true} />
+            ) : selectedAxis === "equipment" ? (
+              <InteriorExteriorPage hideHeader={true} />
+            ) : selectedAxis === "marketing" ? (
+              <MarketingPage hideHeader={true} />
+            ) : selectedAxis === "menu" ? (
+              <MenuPage hideHeader={true} />
             ) : (
               <Card className="flex flex-col gap-4 p-4">
               <div className="flex items-center gap-2">
