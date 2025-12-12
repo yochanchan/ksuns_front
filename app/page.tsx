@@ -47,59 +47,67 @@ export default function Home() {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <nav className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-20 lg:h-24">
-            {/* Logo */}
-            <div className="flex items-center">
-              <div className="relative h-24 w-60 md:h-28 md:w-72 lg:h-32 lg:w-80">
+          <div className="flex items-center justify-between h-20 lg:h-20">
+            {/* Logo - 左端に配置 */}
+            <div className="flex items-center -my-4 -ml-4 lg:-ml-8">
+              <div className="relative h-32 w-80 md:h-36 md:w-96 lg:h-40 lg:w-[420px]">
                 <Image
                   alt="お店開業AIロゴ"
                   src="/images/logo.png"
                   fill
-                  className="object-contain"
+                  className="object-contain object-left"
                   priority
                 />
               </div>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-6">
-              <div className="flex items-center gap-6 bg-white rounded-full shadow-[7px_7px_5px_0px_rgba(78,118,207,0.3)] px-8 py-3.5">
-                <button className="text-[#234a96] text-base font-medium hover:text-[#436eae] transition-colors whitespace-nowrap">
+            <div className="hidden lg:flex items-center gap-4">
+              <div className="flex items-center gap-4 bg-white rounded-full shadow-[7px_7px_5px_0px_rgba(78,118,207,0.3)] px-6 py-3">
+                <button className="text-[#234a96] text-sm font-medium hover:text-[#436eae] transition-colors whitespace-nowrap">
                   5つのSTEP
                 </button>
-                <button className="text-[#234a96] text-base font-medium hover:text-[#436eae] transition-colors whitespace-nowrap">
+                <button className="text-[#234a96] text-sm font-medium hover:text-[#436eae] transition-colors whitespace-nowrap">
                   選ばれる理由
                 </button>
-                <button className="text-[#234a96] text-base font-medium hover:text-[#436eae] transition-colors whitespace-nowrap">
+                <button className="text-[#234a96] text-sm font-medium hover:text-[#436eae] transition-colors whitespace-nowrap">
                   サービス
                 </button>
-                <button className="text-[#234a96] text-base font-medium hover:text-[#436eae] transition-colors whitespace-nowrap">
+                <button className="text-[#234a96] text-sm font-medium hover:text-[#436eae] transition-colors whitespace-nowrap">
                   よくある質問
                 </button>
                 <Link
                   href="/simple_simulation/questions/1"
-                  className="bg-gradient-to-r from-[#f5a623] to-[#e89b1d] text-white px-8 py-2.5 rounded-full hover:shadow-lg transition-all hover:scale-105 whitespace-nowrap inline-flex items-center gap-2"
+                  className="bg-gradient-to-r from-[#f5a623] to-[#e89b1d] text-white px-6 py-2 rounded-full hover:shadow-lg transition-all hover:scale-105 whitespace-nowrap inline-flex items-center gap-1 text-sm"
                 >
                   診断はこちらから
                   <ChevronRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/login"
-                  className="text-[#234a96] text-base font-medium hover:text-[#436eae] transition-colors whitespace-nowrap border-2 border-[#234a96] px-6 py-2 rounded-full hover:bg-[#234a96] hover:text-white"
+                  className="text-[#234a96] text-sm font-medium hover:text-[#436eae] transition-colors whitespace-nowrap border-2 border-[#234a96] px-5 py-1.5 rounded-full hover:bg-[#234a96] hover:text-white"
                 >
                   ログイン
                 </Link>
               </div>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#234a96]"
-              aria-label="メニューを開く"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Mobile Menu Button & Login */}
+            <div className="lg:hidden flex items-center gap-3">
+              <Link
+                href="/login"
+                className="bg-[#d5e5f5] text-[#234a96] text-sm font-medium px-5 py-2 rounded-full hover:bg-[#c0d8f0] transition-colors"
+              >
+                ログイン
+              </Link>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 text-[#234a96]"
+                aria-label="メニューを開く"
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
@@ -117,12 +125,6 @@ export default function Home() {
               <button className="block w-full text-left px-4 py-2 text-[#234a96] text-base font-medium hover:bg-gray-50">
                 よくある質問
               </button>
-              <Link
-                href="/login"
-                className="block w-full text-left px-4 py-2 text-[#234a96] text-base font-medium hover:bg-gray-50 border-t border-gray-200"
-              >
-                ログイン
-              </Link>
             </div>
           )}
         </nav>
